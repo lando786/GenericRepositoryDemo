@@ -4,30 +4,28 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GenericRepositoryDemo.Repository
 {
-    public interface IPizzaRepository
+    public interface IPizzaRepository : IGenericRepository<Pizza>
     {
-        void AddPizza(Pizza pizza);
-        IEnumerable<Pizza> GetAll();
+        //void AddPizza(Pizza pizza);
+        //IEnumerable<Pizza> GetAll();
     }
-    public class PizzaRepository : IPizzaRepository
+    public class PizzaRepository : GenericRepository<Pizza>, IPizzaRepository
     {
-        private PizzaContext _context;
-        private DbSet<Pizza> table = null;
-        public PizzaRepository(IPizzaContextFactory pizzaContextFactory)
+        //private PizzaContext _context;
+        //private DbSet<Pizza> table = null;
+        public PizzaRepository(IPizzaContextFactory pizzaContextFactory) : base(pizzaContextFactory)
         {
-            _context = pizzaContextFactory.CreateContext();
-            table = _context.Set<Pizza>();
         }
 
-        public void AddPizza(Pizza pizza)
-        {
-            table.Add(pizza);
-            _context.SaveChanges();
-        }
+        //public void AddPizza(Pizza pizza)
+        //{
+        //    table.Add(pizza);
+        //    _context.SaveChanges();
+        //}
 
-        public IEnumerable<Pizza> GetAll()
-        {
-            return table.ToList();
-        }
+        //public IEnumerable<Pizza> GetAll()
+        //{
+        //    return table.ToList();
+        //}
     }
 }

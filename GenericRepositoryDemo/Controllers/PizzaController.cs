@@ -6,7 +6,7 @@ namespace GenericRepositoryDemo.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PizzaController
+    public class PizzaController : ControllerBase
     {
         private IPizzaService _pizzaService;
 
@@ -16,15 +16,18 @@ namespace GenericRepositoryDemo.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Pizza> Get()
+        public async Task<ActionResult<IList<Pizza>>> Get()
         {
-            return _pizzaService.GetPizzas();
+            var result = await _pizzaService.GetPizzas();
+
+            return Ok(result);
         }
 
         [HttpPost]
-        public void AddPizza(Pizza pizza)
+        public async Task<ActionResult<Pizza>> AddPizza(Pizza pizza)
         {
-            _pizzaService.AddPizza(pizza);
+            var result =  await _pizzaService.AddPizza(pizza);
+            return Ok(result);
         }
 
     }

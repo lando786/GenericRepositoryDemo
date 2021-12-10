@@ -5,8 +5,8 @@ namespace GenericRepositoryDemo.Services
 {
     public interface IPizzaService
     {
-        void AddPizza(Pizza pizza);
-        IEnumerable<Pizza> GetPizzas();
+        Task<Pizza> AddPizza(Pizza pizza);
+        Task<IList<Pizza>> GetPizzas();
 
     }
     public class PizzaService : IPizzaService
@@ -18,14 +18,14 @@ namespace GenericRepositoryDemo.Services
             _pizzaRepository = pizzaRepository;
         }
 
-        public void AddPizza(Pizza pizza)
+        public async Task<Pizza> AddPizza(Pizza pizza)
         {
-            _pizzaRepository.AddPizza(pizza);
+            return await _pizzaRepository.Add(pizza);
         }
 
-        public IEnumerable<Pizza> GetPizzas()
+        public async Task<IList<Pizza>> GetPizzas()
         {
-            return _pizzaRepository.GetAll();
+            return await _pizzaRepository.GetAll();
         }
     }
 }
