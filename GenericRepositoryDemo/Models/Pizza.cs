@@ -1,4 +1,4 @@
-﻿namespace GenericRepositoryDemo.Domain
+﻿namespace GenericRepositoryDemo.Models
 {
     public class Pizza
     {

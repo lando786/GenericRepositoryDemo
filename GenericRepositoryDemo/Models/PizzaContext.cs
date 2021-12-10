@@ -1,15 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace GenericRepositoryDemo.Domain
+namespace GenericRepositoryDemo.Models
 {
     public class PizzaContext : DbContext
     {
         public DbSet<Pizza> Pizza { get; set; }
 
-        public PizzaContext()
-        {
-
-        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
 

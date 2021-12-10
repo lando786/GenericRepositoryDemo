@@ -1,9 +1,13 @@
-using GenericRepositoryDemo.Domain;
+using GenericRepositoryDemo.Data;
+using GenericRepositoryDemo.Repository;
+using GenericRepositoryDemo.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddTransient<IPizzaService, PizzaService>();
+builder.Services.AddTransient<IPizzaRepository, PizzaRepository>();
+builder.Services.AddTransient<IPizzaContextFactory, PizzaContextFactory>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
