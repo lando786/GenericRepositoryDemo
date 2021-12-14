@@ -1,7 +1,8 @@
 ﻿using GenericRepositoryDemo.Data;
+using GenericRepositoryDemo.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace GenericRepositoryDemo.Models
+namespace GenericRepositoryDemo.Repository
 {
     public interface IGenericRepository<T> where T : class
     {
@@ -14,7 +15,7 @@ namespace GenericRepositoryDemo.Models
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private PizzaContext _context = null;
-        private DbSet<T> table = null;
+        internal DbSet<T> table = null;
 
         public GenericRepository(IPizzaContextFactory cropPlanContext)
         {
